@@ -11,6 +11,51 @@
     <title>Registration and Login</title>
 </head>
 <body>
-
+    <!-- Container -->
+    <div class="container col-md-6">
+        <div class="d-flex justify-content-between">
+            <!-- Registration Form -->
+            <h1>Registration</h1>
+            <form action="/registration" class="col-md-6" method="POST">
+                <div class="form-group">
+                    <label for="first_name">First name:</label>
+                    <input type="text" name="first_name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last name:</label>
+                    <input type="text" name="last_name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="text" name="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="text" name="confirm_password" class="form-control">
+                </div>
+                <button class="btn btn-primary mt-3">Register</button>
+            </form>
+            <!-- End of Registration Form -->
+            <!-- Login Form -->
+            <h1>Login</h1>
+            <form action="/login" class="col-md-6" method="POST">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="text" name="password" class="form-control">
+                </div>
+                <button class="btn btn-success mt-3">Login</button>
+            </form>
+            <!-- End of Login Form -->
+        </div>
+    </div>
+    <!-- End of Container -->
 </body>
 </html>
