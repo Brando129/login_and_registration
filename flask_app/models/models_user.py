@@ -27,6 +27,8 @@ class User:
                 VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"""
         return connectToMySQL(db).query_db(query, data)
 
+    # Classmethod for getting a user by their id.
+
     # Staticmethod for validating a user.
     @staticmethod
     def validate_user(data):

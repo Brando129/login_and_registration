@@ -13,6 +13,17 @@ def index():
     return render_template('dashboard.html')
 
 # Route for checking if a user is in session.
+@app.route('/dashboard')
+def check_session():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    
+
+# Route for logging a user out
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 # Post Routes
 # Route for registering a user
