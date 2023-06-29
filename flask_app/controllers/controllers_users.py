@@ -16,5 +16,5 @@ def register():
     if not models_user.User.validate_user(request.form):
         # We redirect to the template with the form.
         return redirect('/')
-
+    models_user.User.save(request.form)
     return redirect('/dashboard')
