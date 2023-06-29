@@ -17,6 +17,8 @@ class User:
         self.last_name = data['last_name']
         self.email = data['email']
         self.password = data['password']
+        self.created_at = data['created_at']
+        self.updated_at = data['updated_at']
 
     # Classmethod for saving a new user.
     @classmethod
@@ -28,6 +30,8 @@ class User:
     # Staticmethod for validating a user.
     @staticmethod
     def validate_user(data):
+        # Create a regular expression object that we'll use later
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         # Set is_valid to True.
         is_valid = True
         # Test if the first name is at at least 2 characters.
