@@ -35,6 +35,13 @@ class User:
         results = connectToMySQL(db).query_db(query, data)
         return cls(results[0])
 
+    # Classmethod for getting a user's email
+    def get_by_email(cls, data):
+        print("Getting user email...")
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        return cls(results[0])
+
     # Staticmethod for validating a user.
     @staticmethod
     def validate_user(data):
