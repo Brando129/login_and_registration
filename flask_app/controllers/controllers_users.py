@@ -12,6 +12,8 @@ bcrypt = Bcrypt(app) # We are creating an object called bcrypt,
 def index():
     return render_template('dashboard.html')
 
+# Route for checking if a user is in session.
+
 # Post Routes
 # Route for registering a user
 @app.route('/register', methods=['POST'])
