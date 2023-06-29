@@ -23,12 +23,14 @@ class User:
     # Classmethod for saving a new user.
     @classmethod
     def save(cls, data):
+        print("Saving user...")
         query = """ INSERT INTO users (first_name, last_name, email, password)
                 VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"""
         return connectToMySQL(db).query_db(query, data)
 
     # Classmethod for getting a user by their id.
     def get_by_id(cls, data):
+        print("Getting user id...")
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(db).query_db(query, data)
         return cls(results[0])
@@ -36,8 +38,7 @@ class User:
     # Staticmethod for validating a user.
     @staticmethod
     def validate_user(data):
-        # Create a regular expression object that we'll use later
-        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        print("Validating user data...")
         # Set is_valid to True.
         is_valid = True
         # Test if the first name is at at least 2 characters.
@@ -64,7 +65,8 @@ class User:
             flash("Password is must be at least 8 characters.", "register")
             is_valid = False
         # Test if passwords match.
-        if data['password'] != data['confirm_password', "register"]:
-            flash("Password does not match.")
+        if data['password'] != data['confirm_password']:
+            flash("Password does not match.", "register")
             is_valid = False
+        print("Validation successful")
         return is_valid

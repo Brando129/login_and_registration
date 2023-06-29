@@ -15,6 +15,7 @@ def index():
 # Route for checking if a user is in session.
 @app.route('/dashboard')
 def check_session():
+    print('Checking if user is in session route...')
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
@@ -32,6 +33,7 @@ def logout():
 # Route for registering a user
 @app.route('/register', methods=['POST'])
 def register():
+    print("Registering user route...")
     if not models_user.User.validate_user(request.form):
         # We redirect to the template with the form.
         return redirect('/')
