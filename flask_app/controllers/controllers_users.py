@@ -17,7 +17,10 @@ def index():
 def check_session():
     if 'user_id' not in session:
         return redirect('/logout')
-    
+    data = {
+        "id": session['user_id']
+    }
+    return render_template('dashboard.html', user=models_user.User.get_by_id(data))
 
 # Route for logging a user out
 @app.route('/logout')

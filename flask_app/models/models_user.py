@@ -28,6 +28,10 @@ class User:
         return connectToMySQL(db).query_db(query, data)
 
     # Classmethod for getting a user by their id.
+    def get_by_id(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        return cls(results[0])
 
     # Staticmethod for validating a user.
     @staticmethod
