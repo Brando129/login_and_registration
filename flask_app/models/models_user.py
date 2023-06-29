@@ -30,19 +30,31 @@ class User:
     def validate_user(data):
         is_valid = True
         if len(data['first_name']) < 2:
-            flash("First name is required.")
+            flash("First name is required.", "register")
             is_valid = False
+
         if len(data['last_name']) < 2:
-            flash("Last name is required.")
+            flash("Last name is required.", "register")
             is_valid = False
+
         # Test whether email matches the  EMAIL_REGEX pattern
         if not EMAIL_REGEX.match(data['email']):
-            flash("Invalid email address!")
+            flash("Invalid email address!" , "register")
             is_valid = False
+        query = """SELECT * FROM users
+                WHERE email = %(email)s;"""
+        results = connectToMySQL(db).query_db(query, data)
+
+        if len(results) != 0:
+            flash("This email is already being used.", "register")
+            is_valid = False
+
         if len(data['password']) < 8:
-            flash("Password is required.")
+            flash("Password is must be at least 8 characters.", "register")
             is_valid = False
-        if data['password'] != data['password']:
+
+
+        if data['password'] != data['confirm_password', "register"]:
             flash("Password does not match.")
             is_valid = False
         return is_valid

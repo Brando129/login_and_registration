@@ -19,7 +19,7 @@
             <form action="/register" class="col-md-5 p-4 bg-dark text-light" method="POST">
                 <h1 class="text-primary" >Registration</h1>
                 <!-- Flash messages -->
-                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% with messages = get_flashed_messages(category_filter=['register']) %}     <!-- declare a variable called messages -->
                     {% if messages %}                            <!-- check if there are any messages -->
                         {% for message in messages %}            <!-- loop through the messages -->
                             <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
@@ -54,7 +54,7 @@
             <form action="/login" class="col-md-5 p-4 bg-dark text-light" method="POST">
                 <h1 class="text-success" >Login</h1>
                 <!-- Flash messages -->
-                {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+                {% with messages = get_flashed_messages(category_filter=['login']) %}     <!-- declare a variable called messages -->
                     {% if messages %}                            <!-- check if there are any messages -->
                         {% for message in messages %}            <!-- loop through the messages -->
                             <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
