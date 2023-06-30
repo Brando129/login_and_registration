@@ -40,6 +40,8 @@ class User:
         print("Getting user email...")
         query = "SELECT * FROM users WHERE email = %(email)s;"
         results = connectToMySQL(db).query_db(query, data)
+        if len(results) < 1:
+            return False
         return cls(results[0])
 
     # Staticmethod for validating a user.
@@ -58,7 +60,7 @@ class User:
             is_valid = False
         # Test whether email matches the  EMAIL_REGEX pattern.
         if not EMAIL_REGEX.match(data['email']):
-            flash("Invalid email address!" , "register")
+            flash("Invalid email address." , "register")
             is_valid = False
         query = """SELECT * FROM users
                 WHERE email = %(email)s;"""
@@ -69,7 +71,7 @@ class User:
             is_valid = False
         # Test if the password is a certain amount of characters.
         if len(data['password']) < 8:
-            flash("Password is must be at least 8 characters.", "register")
+            flash("Password must be at least 8 characters.", "register")
             is_valid = False
         # Test if passwords match.
         if data['password'] != data['confirm_password']:

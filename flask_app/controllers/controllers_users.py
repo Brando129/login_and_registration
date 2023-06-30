@@ -13,7 +13,7 @@ def index():
     return render_template('dashboard.html')
 
 # Route for checking if a user is in session.
-@app.route('/dashboard')
+@app.route('/homepage')
 def check_session():
     print('Checking if user is in session route...')
     if 'user_id' not in session:
@@ -21,7 +21,8 @@ def check_session():
     data = {
         "id": session['user_id']
     }
-    return render_template('dashboard.html', user=models_user.User.get_by_id(data))
+    print("Successfully got user id...")
+    return render_template('homepage.html', user=models_user.User.get_by_id(data))
 
 # Route for logging a user out
 @app.route('/logout')
@@ -51,7 +52,7 @@ def register():
     This is how we keep our applications safe."""
     id = models_user.User.save(data)
     session['user_id'] = id
-    return redirect('/dashboard')
+    return redirect('/homepage')
 
 # Route for logging a user in.
 @app.route('/login', methods=['POST'])
@@ -66,5 +67,5 @@ def login():
         return redirect('/')
     session['user_id'] = user.id
     print("Log in successful.")
-    return redirect('/dashboard')
+    return redirect('/homepage')
 
