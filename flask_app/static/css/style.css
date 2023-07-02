@@ -3,3 +3,9 @@
     margin: 0px;
     padding: 0px;
 }
+
+/* Homepage image */
+.img {
+    width: 25%;
+    height: auto;
+}
