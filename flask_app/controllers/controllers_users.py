@@ -57,7 +57,7 @@ def register():
 # Route for logging a user in.
 @app.route('/login', methods=['POST'])
 def login():
-    print("Logging in")
+    print("Logging in...")
     user = models_user.User.get_by_email(request.form)
     if not user:
         flash("Invalid email address.", "login")

@@ -28,6 +28,25 @@ class User:
                 VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"""
         return connectToMySQL(db).query_db(query, data)
 
+    # Classmethod for getting all the users.
+    @classmethod
+    def get_all(cls):
+        print("Getting all the users...")
+        query = "SELECT * FROM users;"
+        results = connectToMySQL(db).query_db(query)
+        users = []
+        for row in results:
+            users.append(cls(row))
+        return users
+
+    # Classmethod for getting a user by their email.
+    @classmethod
+    def get_by_email(cls, data):
+        print("Getting the user by email...")
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        results = connectToMySQL(db).query_db(query, data)
+        return cls(results[0])
+
     # Classmethod for getting a user by their id.
     def get_by_id(cls, data):
         print("Getting user id...")
