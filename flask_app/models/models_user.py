@@ -45,22 +45,16 @@ class User:
         print("Getting the user by email...")
         query = "SELECT * FROM users WHERE email = %(email)s;"
         results = connectToMySQL(db).query_db(query, data)
+        if len(results) < 1:
+            return False
         return cls(results[0])
 
     # Classmethod for getting a user by their id.
+    @classmethod
     def get_by_id(cls, data):
         print("Getting user id...")
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(db).query_db(query, data)
-        return cls(results[0])
-
-    # Classmethod for getting a user's email
-    def get_by_email(cls, data):
-        print("Getting user email...")
-        query = "SELECT * FROM users WHERE email = %(email)s;"
-        results = connectToMySQL(db).query_db(query, data)
-        if len(results) < 1:
-            return False
         return cls(results[0])
 
     # Staticmethod for validating a user.
