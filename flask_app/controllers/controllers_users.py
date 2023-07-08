@@ -61,10 +61,10 @@ def login():
     print("Logging in...")
     user = models_user.User.get_by_email(request.form)
     if not user:
-        flash("Invalid email address.", "login")
+        flash("Invalid email or password.", "login")
         return redirect('/')
     if not bcrypt.check_password_hash(user.password, request.form['password']):
-        flash("Invalid password.", "login")
+        flash("Invalid email or password.", "login")
         return redirect('/')
     session['user_id'] = user.id
     print("Log in successful.")
